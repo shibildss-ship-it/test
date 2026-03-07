@@ -4,7 +4,9 @@
       "Bash(npm view:*)",
       "Bash(npm install:*)",
       "Bash(node:*)",
-      "Bash(npx opennextjs-cloudflare:*)"
+      "Bash(npx opennextjs-cloudflare:*)",
+      "Bash(xargs grep:*)",
+      "Bash(npx next:*)"
     ]
   }
 }
