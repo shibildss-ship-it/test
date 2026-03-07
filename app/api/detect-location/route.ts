@@ -16,19 +16,19 @@ export async function GET(request: NextRequest) {
     const debugGeo = process.env.DEBUG_GEO === "1";
     const ipinfoToken = process.env.IPINFO_TOKEN;
 
-    // Lấy IP từ Vercel headers trước (an toàn hơn), rồi fallback
-    const vercelForwarded = headers.get("x-vercel-forwarded-for");
+    // Lấy IP: Cloudflare Workers dùng cf-connecting-ip
+    const cfConnectingIp = headers.get("cf-connecting-ip");
     const forwarded = headers.get("x-forwarded-for");
     const realIp = headers.get("x-real-ip");
     const ip =
-      (vercelForwarded ? vercelForwarded.split(",")[0].trim() : "") ||
+      (cfConnectingIp ? cfConnectingIp.trim() : "") ||
       (forwarded ? forwarded.split(",")[0].trim() : "") ||
       (realIp ? realIp.trim() : "") ||
       "unknown";
 
     if (debugGeo) {
       console.log("[geo-debug] headers", {
-        "x-vercel-forwarded-for": vercelForwarded,
+        "cf-connecting-ip": cfConnectingIp,
         "x-forwarded-for": forwarded,
         "x-real-ip": realIp,
       });

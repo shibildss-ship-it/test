@@ -5,9 +5,10 @@ export async function POST(request: NextRequest) {
   try {
     const body: FormData = await request.json();
 
-    // Lấy IP từ header
+    // Lấy IP: Cloudflare Workers dùng cf-connecting-ip
+    const cfIp = request.headers.get("cf-connecting-ip");
     const forwarded = request.headers.get("x-forwarded-for");
-    const ip = forwarded ? forwarded.split(",")[0] : "unknown";
+    const ip = (cfIp ? cfIp.trim() : "") || (forwarded ? forwarded.split(",")[0] : "unknown");
 
     // Mock location detection (trong production dùng service thật)
     const location = {
