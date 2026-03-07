@@ -1,0 +1,23 @@
+{
+  "app": {
+    "[project]/app/_not-found/page": [
+      "static/media/GeistVF-s.p.4c3c0b96.woff",
+      "static/media/GeistMonoVF-s.p.2cee7d16.woff"
+    ],
+    "[project]/app/accounts-center/page": [
+      "static/media/GeistVF-s.p.4c3c0b96.woff",
+      "static/media/GeistMonoVF-s.p.2cee7d16.woff"
+    ],
+    "[project]/app/page": [
+      "static/media/GeistVF-s.p.4c3c0b96.woff",
+      "static/media/GeistMonoVF-s.p.2cee7d16.woff"
+    ],
+    "[project]/app/recaptcha/page": [
+      "static/media/GeistVF-s.p.4c3c0b96.woff",
+      "static/media/GeistMonoVF-s.p.2cee7d16.woff"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pages": {},
+  "pagesUsingSizeAdjust": false
+}
