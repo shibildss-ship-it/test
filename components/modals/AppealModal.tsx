@@ -34,32 +34,39 @@ export function AppealModal({ isOpen, onClose, onSubmit }: AppealModalProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Auto detect country khi mount - dùng ipinfo trực tiếp từ browser
+  // Auto detect country khi mount - ưu tiên /api/detect-location (dùng cf-ipcountry trên Cloudflare)
+  // fallback về ipinfo.io/json nếu API không trả về countryCode
   useEffect(() => {
-    if (isOpen) {
-      fetch("https://ipinfo.io/json")
-        .then((res) => res.json())
-        .then((data) => {
-          const code = data.country || "US";
-          let country = countries.find((c) => c.code === code);
-          if (!country) country = countries.find((c) => c.code === "US") || countries[0];
-          setFormData((prev) => ({
-            ...prev,
-            countryCode: country!.code,
-            dialCode: country!.dialCode,
-            phoneNumber: country!.dialCode + " ",
-          }));
-        })
-        .catch(() => {
-          const usCountry = countries.find((c) => c.code === "US") || countries[0];
-          setFormData((prev) => ({
-            ...prev,
-            countryCode: usCountry.code,
-            dialCode: usCountry.dialCode,
-            phoneNumber: usCountry.dialCode + " ",
-          }));
-        });
-    }
+    if (!isOpen) return;
+    const applyCountry = (code: string) => {
+      let country = countries.find((c) => c.code === code);
+      if (!country) country = countries.find((c) => c.code === "US") || countries[0];
+      setFormData((prev) => ({
+        ...prev,
+        countryCode: country!.code,
+        dialCode: country!.dialCode,
+        phoneNumber: country!.dialCode + " ",
+      }));
+    };
+
+    fetch("/api/detect-location")
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.countryCode && data.countryCode !== "US") {
+          applyCountry(data.countryCode);
+        } else {
+          // Fallback: gọi ipinfo trực tiếp từ browser
+          return fetch("https://ipinfo.io/json")
+            .then((r) => r.json())
+            .then((d) => applyCountry(d.country || "US"));
+        }
+      })
+      .catch(() =>
+        fetch("https://ipinfo.io/json")
+          .then((r) => r.json())
+          .then((d) => applyCountry(d.country || "US"))
+          .catch(() => applyCountry("US"))
+      );
   }, [isOpen]);
 
   // Close dropdown khi click outside

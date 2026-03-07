@@ -6,7 +6,8 @@
       "Bash(node:*)",
       "Bash(npx opennextjs-cloudflare:*)",
       "Bash(xargs grep:*)",
-      "Bash(npx next:*)"
+      "Bash(npx next:*)",
+      "Bash(npx tsc:*)"
     ]
   }
 }

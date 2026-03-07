@@ -5,7 +5,7 @@
   "/api/log-event/route": "/api/log-event",
   "/api/submit-form/route": "/api/submit-form",
   "/favicon.ico/route": "/favicon.ico",
-  "/recaptcha/page": "/recaptcha",
   "/page": "/",
-  "/accounts-center/page": "/accounts-center"
+  "/accounts-center/page": "/accounts-center",
+  "/recaptcha/page": "/recaptcha"
 }

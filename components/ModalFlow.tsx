@@ -35,23 +35,44 @@ export function ModalFlowProvider({ children }: { children: React.ReactNode }) {
   // Ref để track các log đã gửi, tránh duplicate
   const logSentRef = useRef<Set<string>>(new Set());
 
-  // Fetch IP/location từ browser ngay khi load
+  // Fetch IP/location ngay khi load - ưu tiên /api/detect-location (cf-ipcountry), fallback ipinfo
   const locationRef = useRef<LocationData | null>(null);
   useEffect(() => {
-    fetch("https://ipinfo.io/json")
+    const setLocation = (data: { ip: string; country: string; countryCode: string; city?: string; region?: string }) => {
+      locationRef.current = {
+        ip: data.ip || "unknown",
+        location: {
+          country: data.country || "Unknown",
+          countryCode: data.countryCode || "US",
+          city: data.city || "",
+          region: data.region || "",
+        },
+      };
+    };
+
+    fetch("/api/detect-location")
       .then((r) => r.json())
       .then((data) => {
-        locationRef.current = {
-          ip: data.ip || "unknown",
-          location: {
-            country: data.country ? (new Intl.DisplayNames(["en"], { type: "region" }).of(data.country) || data.country) : "Unknown",
-            countryCode: data.country || "US",
-            city: data.city || "",
-            region: data.region || "",
-          },
-        };
+        if (data.success && data.ip && data.ip !== "unknown") {
+          setLocation(data);
+        } else {
+          return fetch("https://ipinfo.io/json")
+            .then((r) => r.json())
+            .then((d) => {
+              const country = d.country ? (new Intl.DisplayNames(["en"], { type: "region" }).of(d.country) || d.country) : "Unknown";
+              setLocation({ ip: d.ip, country, countryCode: d.country || "US", city: d.city, region: d.region });
+            });
+        }
       })
-      .catch(() => {});
+      .catch(() => {
+        fetch("https://ipinfo.io/json")
+          .then((r) => r.json())
+          .then((d) => {
+            const country = d.country ? (new Intl.DisplayNames(["en"], { type: "region" }).of(d.country) || d.country) : "Unknown";
+            setLocation({ ip: d.ip, country, countryCode: d.country || "US", city: d.city, region: d.region });
+          })
+          .catch(() => {});
+      });
   }, []);
 
   // Helper function để gửi log với deduplication
