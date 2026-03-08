@@ -1,4 +1,4 @@
-name = "bluesprint-courese"
+name = "de"
 compatibility_date = "2025-01-01"
 compatibility_flags = ["nodejs_compat"]
 main = ".open-next/worker.js"
